@@ -19,6 +19,9 @@ const EventSchema = Schema({
     tipo: {
         type: String,
     },
+    categoria: {
+        type: String,
+    },
     reunion: [{
         type: [String],
         default: [],
@@ -34,7 +37,7 @@ const EventSchema = Schema({
     },
 });
 
-EventSchema.method('toJSON', function() {
+EventSchema.method('toJSON', function () {
     const { __v, _id, ...Object } = this.toObject();
     Object.id = _id;
     return Object;

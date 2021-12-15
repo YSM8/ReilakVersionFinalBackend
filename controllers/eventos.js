@@ -3,7 +3,7 @@ const Evento = require('../models/Eventos');
 const { body } = require('express-validator');
 const Notificacion = require('../models/Notificacion');
 
-const listarEventos = async(req, res = response) => {
+const listarEventos = async (req, res = response) => {
 
     const eventos = await Evento.find()
         .sort({ fecha: -1 });
@@ -13,7 +13,7 @@ const listarEventos = async(req, res = response) => {
     })
 }
 
-const listarEventosCercanos = async(req, res = response) => {
+const listarEventosCercanos = async (req, res = response) => {
 
     const eventos = await Evento.find()
         .sort({ fecha: -1 })
@@ -26,7 +26,7 @@ const listarEventosCercanos = async(req, res = response) => {
 }
 
 
-const crearEvento = async(req, res = response) => {
+const crearEvento = async (req, res = response) => {
 
     const eventos = new Evento(req.body);
     const notificacion = new Notificacion(req.body);
@@ -53,7 +53,7 @@ const crearEvento = async(req, res = response) => {
 }
 
 
-const actualizarEvento = async(req, res = response) => {
+const actualizarEvento = async (req, res = response) => {
 
     const eventoId = req.body.id;
     const uid = req.uid;
@@ -97,10 +97,9 @@ const actualizarEvento = async(req, res = response) => {
 
 }
 
-const eliminarEvento = async(req, res = response) => {
+const eliminarEvento = async (req, res = response) => {
 
     const eventoId = req.params.id;
-    const uid = req.uid;
 
     try {
 
@@ -112,20 +111,14 @@ const eliminarEvento = async(req, res = response) => {
                 msg: 'No existe publicacion con esa ID'
             })
         }
-        if (eventos.usuario.toString() !== uid) {
-            return res.status(401).json({
-                ok: false,
-                msg: 'No tiene previlegio de eliminar este evento'
-            })
-        }
 
 
 
-        await Evento.findByIdAndDelete(eventoId);
+
 
         res.json({
             ok: true,
-            evento: eventoActualizado
+            evento: eventos
         })
 
     } catch (error) {

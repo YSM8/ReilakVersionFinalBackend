@@ -1,4 +1,4 @@
-const {Schema, model} = require('mongoose');
+const { Schema, model } = require('mongoose');
 
 const PostSchema = Schema({
     titulo: {
@@ -11,23 +11,26 @@ const PostSchema = Schema({
     multimedia: {
         type: Array,
     },
-    fecha:{
+    fecha: {
         type: Date,
         default: Date.now
     },
-    usuario:{
+    categoria: {
+        type: String,
+    },
+    usuario: {
         type: Schema.Types.ObjectId,
         ref: 'Usuario'
     },
-    reaccion:[{
-        type: Schema.Types.ObjectId, 
+    reaccion: [{
+        type: Schema.Types.ObjectId,
         default: [],
         ref: 'Usuario',
     }],
 });
 
-PostSchema.method('toJSON', function(){
-    const {__v, _id, ...Object} = this.toObject();
+PostSchema.method('toJSON', function () {
+    const { __v, _id, ...Object } = this.toObject();
     Object.id = _id;
     return Object;
 })

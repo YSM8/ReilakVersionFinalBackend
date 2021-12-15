@@ -19,7 +19,8 @@ const {
     dRadioEC,
     dRadioGU,
     dValoresCU,
-    dRadioUC
+    dRadioUC,
+    dUsuariosC
 } = require('../controllers/dashboard');
 
 const router = Router();
@@ -29,6 +30,9 @@ router.use(validarJWT);
 
 //General - Cantidad Usuarios
 router.get('/dcantidadu', dCantidadU);
+
+//General - Usuarios Online
+router.get('/dusuariosc', dUsuariosC);
 
 //Radios - Conexiones semanales
 router.get('/dradiocs', dRadioCS);
@@ -57,7 +61,7 @@ router.get('/dradiopc', dRadioPC);
 //Radios - Eventos por usuario
 router.get('/dradioeu', dRadioEU);
 
-//Valores - Eventos por fecha
+//Valores - Eventos por tipo
 router.get('/dvaloresef', dValoresEF);
 
 //Radios - Eventos por categoria
