@@ -21,6 +21,7 @@ const EventSchema = Schema({
     },
     categoria: {
         type: String,
+        default: "Corporativo",
     },
     reunion: [{
         type: [String],
